@@ -1,5 +1,4 @@
-
-```markdown
+````markdown
 # Frontend Interview Materials for Junior React Developer
 
 Этот репозиторий содержит материалы для проверки знаний кандидата на позицию Junior Frontend Developer с использованием
@@ -10,20 +9,20 @@ React, TypeScript, Redux и других современных технолог
 ## Содержание
 
 - [Теоретические вопросы и ответы](#теоретические-вопросы-и-ответы)
-  - [1. Типы данных и особенности undefined/ null](#1-типы-данных-и-особенности-undefined-null)
-  - [2. Области видимости и разница между var/let/const](#2-области-видимости-и-разница-между-varletconst)
-  - [3. Цикл событий (event loop)](#3-цикл-событий-event-loop)
-  - [4. JSX и его роль в React](#4-jsx-и-его-роль-в-react)
-  - [5. Хуки: useEffect vs useLayoutEffect](#5-хуки-useeffect-vs-uselayouteffect)
-  - [6. Virtual DOM и процесс reconciliation](#6-virtual-dom-и-процесс-reconciliation)
-  - [7. TypeScript](#7-typescript)
-  - [8. Redux/RTK](#8-reduxrtk)
+    - [1. Типы данных и особенности undefined/ null](#1-типы-данных-и-особенности-undefined-null)
+    - [2. Области видимости и разница между var/let/const](#2-области-видимости-и-разница-между-varletconst)
+    - [3. Цикл событий (event loop)](#3-цикл-событий-event-loop)
+    - [4. JSX и его роль в React](#4-jsx-и-его-роль-в-react)
+    - [5. Хуки: useEffect vs useLayoutEffect](#5-хуки-useeffect-vs-uselayouteffect)
+    - [6. Virtual DOM и процесс reconciliation](#6-virtual-dom-и-процесс-reconciliation)
+    - [7. TypeScript](#7-typescript)
+    - [8. Redux/RTK](#8-reduxrtk)
 - [Live Coding Задания](#live-coding-задания)
-  - [Задание 1. Реализация простого счетчика](#задание-1-реализация-простого-счетчика)
-  - [Задание 2. Что выведет в консоль](#задание-2-что-выведет-в-консоль)
-  - [Задание 3. Найти и исправить ошибки](#задание-3-найти-и-исправить-ошибки)
-    - [Вариант с ошибками](#вариант-с-ошибками)
-    - [Исправленный вариант с комментариями и альтернативными решениями](#исправленный-вариант-с-комментариями-и-альтернативными-решениями)
+    - [Задание 1. Реализация простого счетчика](#задание-1-реализация-простого-счетчика)
+    - [Задание 2. Что выведет в консоль](#задание-2-что-выведет-в-консоль)
+    - [Задание 3. Найти и исправить ошибки](#задание-3-найти-и-исправить-ошибки)
+        - [Вариант с ошибками](#вариант-с-ошибками)
+        - [Исправленный вариант с комментариями и альтернативными решениями](#исправленный-вариант-с-комментариями-и-альтернативными-решениями)
 
 ---
 
@@ -81,46 +80,48 @@ React, TypeScript, Redux и других современных технолог
 **Различия:**
 
 - **var:**
-  - Область видимости — функция.
-  - Повторное объявление в одной области допустимо.
-  - Подвержен подъёму (hoisting).
-    ```javascript
-    if (true) {
-      var varVariable = 'Меня видно за пределами блока!';
-    }
-    console.log(varVariable); // "Меня видно за пределами блока!"
-    ```
-    <p>Но такой хойстинг может привести к странным ситуациям:</p>
-    ```javascript
-    console.log(testVar); // undefined
-    var testVar = 'Это тест!';
-    ```
-    <p>Переменная поднята, но она не инициализирована на момент вызова.</p>
+
+    - Область видимости — функция.
+    - Повторное объявление в одной области допустимо.
+    - Подвержен подъёму (hoisting).
+        ```javascript
+        if (true) {
+        	var varVariable = 'Меня видно за пределами блока!';
+        }
+        console.log(varVariable); // "Меня видно за пределами блока!"
+        ```
+        <p>Но такой хойстинг может привести к странным ситуациям:</p>
+        ```javascript
+        console.log(testVar); // undefined
+        var testVar = 'Это тест!';
+        ```
+        <p>Переменная поднята, но она не инициализирована на момент вызова.</p>
 
 - **let:**
-  - Область видимости — блок.
-  - Нельзя повторно объявлять в одном блоке.
-  - Имеет «временную мёртвую зону» (TDZ) до инициализации.
-    ```javascript
-    if (true) {
-      let letVariable = 'Меня видно только в блоке!';
-    }
-    console.log(letVariable); // Ошибка: letVariable не определена
-    ```
+
+    - Область видимости — блок.
+    - Нельзя повторно объявлять в одном блоке.
+    - Имеет «временную мёртвую зону» (TDZ) до инициализации.
+        ```javascript
+        if (true) {
+        	let letVariable = 'Меня видно только в блоке!';
+        }
+        console.log(letVariable); // Ошибка: letVariable не определена
+        ```
 
 - **const:**
-  - Тоже блочная область видимости.
-  - Обязательно инициализируется при объявлении.
-  - Нельзя переназначать значение (хотя для объектов/массивов можно менять содержимое).
-    ```javascript
-    const myConstant = 10;
-    myConstant = 20; // Ошибка: нельзя изменить значение const
-    ```
-    ```javascript
-    const obj = { name: 'John' };
-    obj.name = 'Renat'; // Это работает
-    obj = {}; // Ошибка: нельзя изменить саму ссылку на объект
-    ```
+    - Тоже блочная область видимости.
+    - Обязательно инициализируется при объявлении.
+    - Нельзя переназначать значение (хотя для объектов/массивов можно менять содержимое).
+        ```javascript
+        const myConstant = 10;
+        myConstant = 20; // Ошибка: нельзя изменить значение const
+        ```
+        ```javascript
+        const obj = { name: 'John' };
+        obj.name = 'Renat'; // Это работает
+        obj = {}; // Ошибка: нельзя изменить саму ссылку на объект
+        ```
 
 ---
 
@@ -150,27 +151,32 @@ _Пример результата кода:_
 console.log('Start');
 
 setTimeout(() => {
-  console.log('Timeout');
+	console.log('Timeout');
 }, 0);
 
 Promise.resolve().then(() => {
-  console.log('Promise');
+	console.log('Promise');
 });
 
 console.log('End');
 ```
+````
+
 **Вывод:**
+
 ```
 Start
 End
 Promise
 Timeout
 ```
+
 Микротаски (Promise) выполняются раньше макротасок (setTimeout), несмотря на нулевую задержку.
 
 ---
 
 ### 4. React – Что такое JSX и зачем он нужен в React? Можно ли использовать React без JSX?
+
 **Вопрос:**
 Что такое JSX и зачем он нужен в React? Можно ли использовать React без JSX?
 
@@ -179,25 +185,30 @@ Timeout
 Можно использовать React без JSX, напрямую вызывая `React.createElement()`, но это менее удобно.
 
 _Пример с JSX:_
+
 ```jsx
 function Greeting() {
-  return <h1>Привет, мир!</h1>;
+	return <h1>Привет, мир!</h1>;
 }
 ```
+
 _Пример без JSX:_
+
 ```jsx
 function Greeting() {
-  return React.createElement('h1', null, 'Привет, мир!');
+	return React.createElement('h1', null, 'Привет, мир!');
 }
 ```
 
 ---
 
 ### 5. React – Какие хуки ты использовал? В чем разница между useEffect и useLayoutEffect?
+
 **Вопрос:**
 Какие хуки ты использовал? В чем разница между `useEffect` и `useLayoutEffect`?
 
 **Ответ:**
+
 <h3>Основные хуки:</h3>
   <ul>
     <li><code>useState</code>: Позволяет работать с локальным состоянием. Он принимает начальное значение и возвращает текущее значение и функцию для его обновления. Компонент перерисовывается после каждого вызова этой функции.</li>
@@ -221,22 +232,26 @@ function Greeting() {
 ---
 
 ### 6. React – Что такое Virtual DOM и React Reconciliation, и как они работают вместе в React?
+
 **Вопрос:**
 Что такое Virtual DOM и как работает процесс reconciliation в React?
 
 **Ответ:**
+
 - **Virtual DOM:** Легковесное представление реального DOM в памяти, которое React использует для отслеживания изменений в состоянии компонентов.
 - **Reconciliation (согласование):** При изменении состояния React создаёт новое представление Virtual DOM, сравнивает его с предыдущим (алгоритм diffing) и вычисляет минимальный набор изменений, которые необходимо внести в реальный DOM. Это позволяет обновлять только изменённые части, повышая производительность приложения.
 
 ---
 
 ### 7. TypeScript – Что такое TypeScript и для чего он нужен в React?
+
 **Вопрос:**
 Что такое TypeScript, для чего он используется и какие преимущества даёт при разработке на React?
 
 **Ответ:**
 **TypeScript** — это надстройка над JavaScript, добавляющая статическую типизацию.
 _Преимущества:_
+
 - Обнаружение ошибок на этапе компиляции.
 - Улучшенное автодополнение, рефакторинг и поддержка кода.
 - Улучшение читаемости и документированности благодаря явному описанию типов.
@@ -245,10 +260,12 @@ _Преимущества:_
 ---
 
 ### 8. Redux/RTK – Что такое Redux, зачем он нужен, и преимущества Redux Toolkit (RTK)
+
 **Вопрос:**
 Что такое Redux, зачем он нужен, и пробовал ли ты использовать Redux Toolkit (RTK)? Какие преимущества RTK даёт по сравнению с классическим Redux?
 
 **Ответ:**
+
 - **Redux:** Библиотека для управления состоянием приложения с централизованным хранилищем (store). Состояние обновляется предсказуемо через экшены и редьюсеры.
 - **Redux Toolkit (RTK):** Официальная обёртка над Redux, снижающая количество шаблонного кода.
   _Преимущества RTK:_
@@ -261,6 +278,7 @@ _Преимущества:_
 ## Live Coding Задания
 
 ### Задание 1. Реализация простого счетчика
+
 **Условие:**
 Напиши React-компонент, который отображает число и имеет две кнопки для увеличения и уменьшения значения. Используй хук `useState`.
 
@@ -270,18 +288,18 @@ _Преимущества:_
 import React, { useState } from 'react';
 
 const Counter = () => {
-  const [count, setCount] = useState(0);
+	const [count, setCount] = useState(0);
 
-  const handleIncrement = () => setCount(prev => prev + 1);
-  const handleDecrement = () => setCount(prev => prev - 1);
+	const handleIncrement = () => setCount((prev) => prev + 1);
+	const handleDecrement = () => setCount((prev) => prev - 1);
 
-  return (
-    <div>
-      <h2>Счётчик: {count}</h2>
-      <button onClick={handleIncrement}>Увеличить</button>
-      <button onClick={handleDecrement}>Уменьшить</button>
-    </div>
-  );
+	return (
+		<div>
+			<h2>Счётчик: {count}</h2>
+			<button onClick={handleIncrement}>Увеличить</button>
+			<button onClick={handleDecrement}>Уменьшить</button>
+		</div>
+	);
 };
 
 export default Counter;
@@ -290,17 +308,18 @@ export default Counter;
 ---
 
 ### Задание 2. Что выведет в консоль
+
 **Пример кода:**
 
 ```js
 console.log('Start');
 
 setTimeout(() => {
-  console.log('Timeout');
+	console.log('Timeout');
 }, 0);
 
 Promise.resolve().then(() => {
-  console.log('Promise');
+	console.log('Promise');
 });
 
 console.log('End');
@@ -308,13 +327,16 @@ console.log('End');
 
 **Ответ и объяснение:**
 Вывод в консоль будет таким:
+
 ```
 Start
 End
 Promise
 Timeout
 ```
+
 Объяснение:
+
 - Сначала выполняется весь синхронный код: выводятся "Start" и "End".
 - Затем выполняются все микротаски (обработчики промисов) – выводится "Promise".
 - После этого выполняется макротаска из `setTimeout` – выводится "Timeout".
@@ -375,49 +397,49 @@ import React, { useEffect, useState } from 'react';
 
 // 5) Определяем интерфейс для пропсов и используем React.FC для типизации компонента
 interface ItemListProps {
-  items?: string[];
+	items?: string[];
 }
 
 // 4) Задаем дефолтное значение для items и применяем типизацию через React.FC
 const ItemList: React.FC<ItemListProps> = ({ items = [] }) => {
-  // 6) Состояние счётчика
-  const [count, setCount] = useState(0);
+	// 6) Состояние счётчика
+	const [count, setCount] = useState(0);
 
-  // 1) useEffect с массивом зависимостей, чтобы эффект выполнялся только при изменении items
-  useEffect(() => {
-    if (Array.isArray(items)) {
-      console.log('Component mounted or updated, items count:', items.length);
-    } else {
-      console.error('Ошибка: items не является массивом');
-    }
-  }, [items]);
+	// 1) useEffect с массивом зависимостей, чтобы эффект выполнялся только при изменении items
+	useEffect(() => {
+		if (Array.isArray(items)) {
+			console.log('Component mounted or updated, items count:', items.length);
+		} else {
+			console.error('Ошибка: items не является массивом');
+		}
+	}, [items]);
 
-  // 2) Проверяем, что items действительно является массивом.
-  // Вариант A: проверка в начале компонента и возврат сообщения об ошибке
-  if (!Array.isArray(items)) {
-    return <div>Ошибка: неверный тип данных для items</div>;
-  }
+	// 2) Проверяем, что items действительно является массивом.
+	// Вариант A: проверка в начале компонента и возврат сообщения об ошибке
+	if (!Array.isArray(items)) {
+		return <div>Ошибка: неверный тип данных для items</div>;
+	}
 
-  // 6) Альтернативный вариант обработчиков для обновления счётчика через callback-версию setCount
-  const plusHandler = (e: React.MouseEvent<HTMLButtonElement>) => {
-    setCount(prevCount => prevCount + 1);
-  };
+	// 6) Альтернативный вариант обработчиков для обновления счётчика через callback-версию setCount
+	const plusHandler = (e: React.MouseEvent<HTMLButtonElement>) => {
+		setCount((prevCount) => prevCount + 1);
+	};
 
-  const minusHandler = (e: React.MouseEvent<HTMLButtonElement>) => {
-    setCount(prevCount => prevCount - 1);
-  };
+	const minusHandler = (e: React.MouseEvent<HTMLButtonElement>) => {
+		setCount((prevCount) => prevCount - 1);
+	};
 
-  return (
-    <div>
-      <ul>
-        {
-          // 3) Добавляем уникальный атрибут key для каждого элемента списка
-          // Вариант 1: стандартная проверка
-          items.map((item, index) => (
-            <li key={index}>{item}</li>
-          ))
+	return (
+		<div>
+			<ul>
+				{
+					// 3) Добавляем уникальный атрибут key для каждого элемента списка
+					// Вариант 1: стандартная проверка
+					items.map((item, index) => (
+						<li key={index}>{item}</li>
+					))
 
-          /*
+					/*
           Альтернативные варианты для проверки, что items является массивом:
 
           Вариант 2 (тернарный оператор):
@@ -433,35 +455,36 @@ const ItemList: React.FC<ItemListProps> = ({ items = [] }) => {
             ))}
           {!Array.isArray(items) && <p>Ошибка: items не является массивом</p>}
           */
-        }
-      </ul>
+				}
+			</ul>
 
-      {/* Секция со счётчиком */}
-      <div style={{ marginTop: '1rem' }}>
-        <p>Счётчик: {count}</p>
-        <input
-          type="number"
-          value={count}
-          onChange={(e) => setCount(Number(e.target.value))}
-          style={{ marginRight: '0.5rem' }}
-        />
-        {/* 6) Обновляем счётчик через callback-версию setCount */}
-        <button onClick={() => setCount(prevCount => prevCount + 1)}>
-          Увеличить
-        </button>
-        <button onClick={() => setCount(prevCount => prevCount - 1)} style={{ marginLeft: '0.5rem' }}>
-          Уменьшить
-        </button>
-        {/* Альтернативный вариант с использованием отдельных обработчиков */}
-        <button onClick={plusHandler} style={{ marginLeft: '1rem' }}>
-          Увеличить (alt)
-        </button>
-        <button onClick={minusHandler} style={{ marginLeft: '0.5rem' }}>
-          Уменьшить (alt)
-        </button>
-      </div>
-    </div>
-  );
+			{/* Секция со счётчиком */}
+			<div style={{ marginTop: '1rem' }}>
+				<p>Счётчик: {count}</p>
+				<input
+					type="number"
+					value={count}
+					onChange={(e) => setCount(Number(e.target.value))}
+					style={{ marginRight: '0.5rem' }}
+				/>
+				{/* 6) Обновляем счётчик через callback-версию setCount */}
+				<button onClick={() => setCount((prevCount) => prevCount + 1)}>Увеличить</button>
+				<button
+					onClick={() => setCount((prevCount) => prevCount - 1)}
+					style={{ marginLeft: '0.5rem' }}
+				>
+					Уменьшить
+				</button>
+				{/* Альтернативный вариант с использованием отдельных обработчиков */}
+				<button onClick={plusHandler} style={{ marginLeft: '1rem' }}>
+					Увеличить (alt)
+				</button>
+				<button onClick={minusHandler} style={{ marginLeft: '0.5rem' }}>
+					Уменьшить (alt)
+				</button>
+			</div>
+		</div>
+	);
 };
 
 export default ItemList;
@@ -472,6 +495,7 @@ export default ItemList;
 ## Итог
 
 **Теоретические вопросы:**
+
 1. Типы данных, особенности `undefined` и `null`.
 2. Области видимости, разница между `var`, `let` и `const`.
 3. Цикл событий (event loop): микротаски и макротаски, порядок выполнения.
@@ -482,9 +506,11 @@ export default ItemList;
 8. Redux и преимущества Redux Toolkit (RTK).
 
 **Live Coding Задания:**
+
 1. Простой счетчик с использованием `useState`.
 2. Анализ порядка вывода в консоли (результат: Start, End, Promise, Timeout).
 3. Задание «Найти и исправить ошибки»: представлен исходный вариант с ошибками и исправленный вариант с комментариями и альтернативными решениями (включая проверку типа пропса и обновление счётчика).
 
 Эти материалы позволят проверить базовые знания кандидата, а также его умение находить и исправлять типичные ошибки в React-коде.
-```
+
+

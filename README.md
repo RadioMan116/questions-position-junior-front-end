@@ -371,7 +371,11 @@ const ItemList: React.FC<ItemListProps> = ({ items = [] }) => {
 
   // 1) useEffect с массивом зависимостей, чтобы эффект выполнялся только при изменении items
   useEffect(() => {
-    console.log('Component mounted or updated, items count:', items.length);
+    if (Array.isArray(items)) {
+      console.log('Component mounted or updated, items count:', items.length);
+    } else {
+      console.error('Ошибка: items не является массивом');
+    }
   }, [items]);
 
   // 2) Проверяем, что items действительно является массивом.
